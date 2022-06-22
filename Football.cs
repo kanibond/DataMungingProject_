@@ -28,8 +28,6 @@ namespace DataMunging
             table.Columns.Add("Pts");
             table.Columns.Add("Diff");
 
-
-
             foreach (var line in lines)
             {
                 var firstValue = line.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
@@ -38,19 +36,19 @@ namespace DataMunging
                 table.Rows.Add(firstValue);
             }
 
-            List<int> differences = table.AsEnumerable().Select(al => Convert.ToInt32(al.Field<string>("Diff"))).Distinct().ToList();
-            int min = differences.Min();
-            table.DefaultView.Sort = "Diff ASC";
-            table = table.DefaultView.ToTable();
-
-
+            var differences = table.AsEnumerable()
+            .Select(al => new
+            {
+                Diff = Convert.ToInt32(al.Field<string>("Diff")),
+                TeamName = al.Field<string>("Team")
+            }).ToList();
+            var min = differences.OrderBy(x => x.Diff).FirstOrDefault();
 
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("------- Football -------");
             Console.WriteLine("");
-            Console.WriteLine("Team with smallest difference: " + table.Rows[0]["Team"].ToString());
-
+            Console.WriteLine("Team with smallest difference: " + min.TeamName.ToString());
             Console.ReadLine();
         }
     }
