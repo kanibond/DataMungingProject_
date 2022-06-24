@@ -24,7 +24,12 @@ namespace DataMunging
         {
             Console.WriteLine("Press any key to end the application: ");
             Console.ReadLine();
+        }
 
+        public static void EnterACorrectData ()
+        {
+            Console.WriteLine("Application closing. Enter a valid data next time... ");
+            Console.WriteLine();
         }
     }
 }
