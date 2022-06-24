@@ -12,6 +12,7 @@ namespace DataMunging
         static void Main(string[] args)
         {
             var userOutput = StandardMessage.WelcomeMesage();
+
             switch (userOutput)
             {
                 case "football":
@@ -28,6 +29,7 @@ namespace DataMunging
                     StandardMessage.EnterACorrectData();
                     break;
             }       
+
                 StandardMessage.ExitApplication();                           
             
         }
