@@ -11,9 +11,23 @@ namespace DataMunging
     {
         static void Main(string[] args)
         {
-            Weather.WeatherFile();
-            Football.FootballFile();
-            Console.ReadLine();
+            var userOutput = StandardMessage.WelcomeMesage();
+            userOutput = "weather";
+            switch (userOutput)
+            {
+                case "football":
+                ReadDataFiles.ReadFootballFile();
+                 ProcessDataFiles.ProcessFootballFile();                   
+                 break;
+
+                default:
+                   ReadDataFiles.ReadWeatherFile();
+                    ProcessDataFiles.ProcessWeatherFile();                
+                    break;
+            }
+            
+                StandardMessage.ExitApplication();                           
+            
         }
     }
 }
