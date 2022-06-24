@@ -12,7 +12,6 @@ namespace DataMunging
         static void Main(string[] args)
         {
             var userOutput = StandardMessage.WelcomeMesage();
-            userOutput = "weather";
             switch (userOutput)
             {
                 case "football":
@@ -20,12 +19,15 @@ namespace DataMunging
                  ProcessDataFiles.ProcessFootballFile();                   
                  break;
 
-                default:
+                case "weather":
                    ReadDataFiles.ReadWeatherFile();
                     ProcessDataFiles.ProcessWeatherFile();                
                     break;
-            }
-            
+
+                default:
+                    StandardMessage.EnterACorrectData();
+                    break;
+            }       
                 StandardMessage.ExitApplication();                           
             
         }
